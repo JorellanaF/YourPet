@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "827393201357",
+    "firebase_url": "https://yourpet-b2bba.firebaseio.com",
+    "project_id": "yourpet-b2bba",
+    "storage_bucket": "yourpet-b2bba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827393201357:android:91ae7b7eaee82146",
+        "android_client_info": {
+          "package_name": "com.example.yourpet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827393201357-o58cs6d1o34nbk1rhbdok3lm18mnmkdo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yourpet",
+            "certificate_hash": "0060395d76577ab40abd1628dd1d93015805db62"
+          }
+        },
+        {
+          "client_id": "827393201357-qfh47m7tbm5shd0vks8pq4fgdrtjf55p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzCjTEjHOYaIdMEFt-EXt2VxKIhdyjGps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827393201357-qfh47m7tbm5shd0vks8pq4fgdrtjf55p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
