@@ -1,6 +1,7 @@
 package com.example.yourpet.Fragments
 
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -28,9 +29,9 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class fundaciones : Fragment() {
+class fundaciones : Fragment(){
+
     lateinit var recyclerFundaciones: RecyclerView
-    lateinit var viewManager: RecyclerView.LayoutManager
     val fundacionList: ArrayList<Fundacion> = ArrayList()
 
     override fun onCreateView(
@@ -69,6 +70,10 @@ class fundaciones : Fragment() {
         })
 
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
 }

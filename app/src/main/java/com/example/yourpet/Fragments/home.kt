@@ -62,7 +62,7 @@ class home: Fragment(){
         return view
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         cambio = context as Cambio
         super.onAttach(context)
     }
