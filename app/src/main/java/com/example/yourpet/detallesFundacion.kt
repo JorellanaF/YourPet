@@ -19,6 +19,12 @@ import kotlinx.android.synthetic.main.fragment_details_fundacion.tv_detail_nombr
 class detallesFundacion : AppCompatActivity() {
 
     var context: Context = this
+
+    var imagen: String? = null
+    var nombre: String? = null
+    var descripcion: String? = null
+    var contacto: String? = null
+
     var detalleNombre: TextView? = null
     var detalleDescripcion: TextView? = null
     var detalleContacto: TextView? = null
@@ -27,14 +33,56 @@ class detallesFundacion : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalles_fundacion)
 
+        nombre = intent.getStringExtra("nombre")
+
         detalleNombre = findViewById(R.id.tv_detalle_nombre)
         detalleDescripcion = findViewById(R.id.tv_detalle_descripcion)
-        detalleContacto = findViewById(R.id.tv_detail_contacto)
+        detalleContacto = findViewById(R.id.tv_detalle_contacto)
+
+        Log.d("recibido", "Si recibi siiiiiii" + nombre)
+
+        Log.d("recibido1", detalleNombre.toString())
+        Log.d("recibido1", detalleDescripcion.toString())
+        Log.d("recibido1", detalleContacto.toString())
+
+        var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+        var myRef: DatabaseReference = database.getReference("fundaciones").child(nombre.toString())
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                var imagen: String = p0.child("imagen").getValue().toString()
+                Log.d("datos", "0 " + imagen)
+                Glide.with(context.applicationContext)
+                    .load(p0.child("imagen").getValue().toString())
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .into(iv_detalle_logo)
+                var nombre: String = p0.child("nombre_fundacion").getValue().toString()
+                Log.d("datos", "1 " + nombre)
+                context.apply {
+                    detalleNombre?.text = nombre
+                }
+                var descripcion: String = p0.child("descripcion").getValue().toString()
+                Log.d("datos", "2 " + descripcion)
+                detalleDescripcion?.text = descripcion
+                var contacto: String = p0.child("contacto").getValue().toString()
+                Log.d("datos", "3 " + contacto)
+                detalleContacto?.text = contacto
+            }
+
+        })
 
     }
 
     fun relleno(fund: String){
         Log.d("recibido", "Si recibi siiiiiii" + fund)
+
+        Log.d("recibido", detalleNombre.toString())
+        Log.d("recibido", detalleDescripcion.toString())
+        Log.d("recibido", detalleContacto.toString())
+
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
         var myRef: DatabaseReference = database.getReference("fundaciones").child(fund)
         myRef.addValueEventListener(object : ValueEventListener {

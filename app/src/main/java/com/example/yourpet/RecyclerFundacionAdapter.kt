@@ -1,5 +1,6 @@
 package com.example.yourpet
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -47,9 +48,12 @@ class RecyclerFundacionAdapter(var fundaciones: List<Fundacion>) :
         }
 
         override fun onClick(v: View) {
+
             var intent = Intent(context, detallesFundacion::class.java)
+            intent.putExtra("nombre", v.tv_nombre.text.toString())
+            Log.d("recibido", intent.putExtra("imagen", v.tv_nombre.text.toString()).toString())
             context.startActivity(intent)
-            detallesFundacion().relleno(v.tv_nombre.text.toString())
+
             Log.d("presionado", "HAYYY " + v.tv_nombre.text)
         }
 
