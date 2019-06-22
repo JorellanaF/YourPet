@@ -46,7 +46,6 @@ class RecyclerFundacionAdapter(var fundaciones: List<Fundacion>) :
         fun setOnClickListener() {
             itemView.setOnClickListener(this)
         }
-
         override fun onClick(v: View) {
 
             var intent = Intent(context, detallesFundacion::class.java)
