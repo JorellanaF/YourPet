@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
     var fragmentFundacion: Fragment = fundaciones()
     val fragmentDetalles = details_fundacion()
 
+    //Se cambia el fragmento segun el nav
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         var transactionH: FragmentTransaction = supportFragmentManager.beginTransaction()
         var transactionV: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
                     transactionH.addToBackStack(null).commit()
                 }
                 else if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-                    transactionH.remove(fragmentHome)
+                    transactionH.remove(fragmentHome).commit()
                     transactionV.replace(R.id.container, fragmentFundacion)
                     transactionV.addToBackStack(null).commit()
                 }
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
+    //Envio el numero de que boton se presiono
     override fun enviar(numero: Int) {
         var transaction1: FragmentTransaction = supportFragmentManager.beginTransaction()
         if (numero == 1) {
@@ -77,6 +79,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         }
     }
 
+    //Envio el nombre de la fundacion que se mostrara para los detalles
     override fun nombreItem(nombre: String) {
         var transitionH2: FragmentTransaction = supportFragmentManager.beginTransaction()
         var transitionV2: FragmentTransaction = supportFragmentManager.beginTransaction()
