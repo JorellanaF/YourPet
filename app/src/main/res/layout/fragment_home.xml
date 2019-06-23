@@ -19,7 +19,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.025"
-            android:id="@+id/circleImageView" app:layout_constraintBottom_toBottomOf="@+id/gridLayout"/>
+            android:id="@+id/circleImageView" app:layout_constraintBottom_toTopOf="@+id/gl_content"/>
 
     <GridLayout
             android:layout_width="310dp"
