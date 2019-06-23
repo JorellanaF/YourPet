@@ -44,19 +44,15 @@ class home: Fragment(){
         btn3 = view.findViewById(R.id.btn_leyes)
         btn4 = view.findViewById(R.id.btn_consejos)
         btn1.setOnClickListener { item ->
-            Log.d("test", "Se presiono fundaciones")
             cambio?.enviar(1)
         }
         btn2.setOnClickListener { item ->
-            Log.d("test", "Se presiono adopciones")
             cambio?.enviar(2)
         }
         btn3.setOnClickListener { item ->
-            Log.d("test", "Se presiono leyes")
             cambio?.enviar(3)
         }
         btn4.setOnClickListener { item ->
-            Log.d("test", "Se presiono consejos")
             cambio?.enviar(4)
         }
         return view

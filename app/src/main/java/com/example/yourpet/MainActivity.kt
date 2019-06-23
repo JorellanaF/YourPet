@@ -1,24 +1,22 @@
 package com.example.yourpet
 
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.yourpet.Fragments.details_fundacion
 import com.example.yourpet.Fragments.fundaciones
 import com.example.yourpet.Fragments.home
 import com.example.yourpet.Fragments.home.Cambio
-import kotlinx.android.synthetic.main.cardview_fundacion.view.*
 
-class MainActivity : AppCompatActivity(), Cambio {
+class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
 
     var fragmentHome: Fragment = home()
     var fragmentFundacion: Fragment = fundaciones()
-    var fragmentDetalles: Fragment = details_fundacion()
+    val fragmentDetalles = details_fundacion()
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
@@ -54,5 +52,12 @@ class MainActivity : AppCompatActivity(), Cambio {
         }
     }
 
+    override fun nombreItem(nombre: String) {
+        var arg = Bundle()
+        arg.putString("nombre", nombre)
+        fragmentDetalles.setArguments(arg)
+        var transition2: FragmentTransaction = supportFragmentManager.beginTransaction()
+        transition2.replace(R.id.container, fragmentDetalles).addToBackStack(null).commit()
+    }
 
 }

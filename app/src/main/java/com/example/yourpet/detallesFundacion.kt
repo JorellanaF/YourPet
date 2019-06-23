@@ -39,12 +39,6 @@ class detallesFundacion : AppCompatActivity() {
         detalleDescripcion = findViewById(R.id.tv_detalle_descripcion)
         detalleContacto = findViewById(R.id.tv_detalle_contacto)
 
-        Log.d("recibido", "Si recibi siiiiiii" + nombre)
-
-        Log.d("recibido1", detalleNombre.toString())
-        Log.d("recibido1", detalleDescripcion.toString())
-        Log.d("recibido1", detalleContacto.toString())
-
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
         var myRef: DatabaseReference = database.getReference("fundaciones").child(nombre.toString())
         myRef.addValueEventListener(object : ValueEventListener {
@@ -54,21 +48,17 @@ class detallesFundacion : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 var imagen: String = p0.child("imagen").getValue().toString()
-                Log.d("datos", "0 " + imagen)
                 Glide.with(context.applicationContext)
                     .load(p0.child("imagen").getValue().toString())
                     .placeholder(R.drawable.ic_launcher_background)
                     .into(iv_detalle_logo)
                 var nombre: String = p0.child("nombre_fundacion").getValue().toString()
-                Log.d("datos", "1 " + nombre)
                 context.apply {
                     detalleNombre?.text = nombre
                 }
                 var descripcion: String = p0.child("descripcion").getValue().toString()
-                Log.d("datos", "2 " + descripcion)
                 detalleDescripcion?.text = descripcion
                 var contacto: String = p0.child("contacto").getValue().toString()
-                Log.d("datos", "3 " + contacto)
                 detalleContacto?.text = contacto
             }
 
@@ -77,11 +67,6 @@ class detallesFundacion : AppCompatActivity() {
     }
 
     fun relleno(fund: String){
-        Log.d("recibido", "Si recibi siiiiiii" + fund)
-
-        Log.d("recibido", detalleNombre.toString())
-        Log.d("recibido", detalleDescripcion.toString())
-        Log.d("recibido", detalleContacto.toString())
 
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
         var myRef: DatabaseReference = database.getReference("fundaciones").child(fund)
@@ -92,21 +77,17 @@ class detallesFundacion : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 var imagen: String = p0.child("imagen").getValue().toString()
-                Log.d("datos", "0 " + imagen)
                 /*Glide.with(context.applicationContext)
                     .load(p0.child("imagen").getValue().toString())
                     .placeholder(R.drawable.ic_launcher_background)
                     .into(iv_detalle_logo)*/
                 var nombre: String = p0.child("nombre_fundacion").getValue().toString()
-                Log.d("datos", "1 " + nombre)
                 context.apply {
                     detalleNombre?.text = nombre
                 }
                 var descripcion: String = p0.child("descripcion").getValue().toString()
-                Log.d("datos", "2 " + descripcion)
                 detalleDescripcion?.text = descripcion
                 var contacto: String = p0.child("contacto").getValue().toString()
-                Log.d("datos", "3 " + contacto)
                 detalleContacto?.text = contacto
             }
 
