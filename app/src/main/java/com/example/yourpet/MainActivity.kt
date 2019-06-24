@@ -54,14 +54,20 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         false
     }
 
+    var transactionV: FragmentTransaction = supportFragmentManager.beginTransaction()
+    var transactionH: FragmentTransaction = supportFragmentManager.beginTransaction()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-
-        var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.all_container, fragmentHome).addToBackStack(null).commit()
+        if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
+            transactionV.replace(R.id.all_container, fragmentHome).addToBackStack(null).commit()
+        }
+        else if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            transactionH.replace(R.id.all_container, fragmentHome).addToBackStack(null).commit()
+        }
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
@@ -71,10 +77,10 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         var transaction1: FragmentTransaction = supportFragmentManager.beginTransaction()
         if (numero == 1) {
             if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-                transaction1.replace(R.id.all_container, fragmentFundacion).addToBackStack(null).commit()
+                transaction1.remove(fragmentHome).replace(R.id.all_container, fragmentFundacion).addToBackStack(null).commit()
             }
             else if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-                transaction1.replace(R.id.container, fragmentFundacion).addToBackStack(null).commit()
+                transaction1.remove(fragmentHome).replace(R.id.container, fragmentFundacion).addToBackStack(null).commit()
             }
         }
     }
@@ -87,12 +93,11 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         arg.putString("nombre", nombre)
         fragmentDetalles.setArguments(arg)
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            transitionH2.replace(R.id.all_container, fragmentDetalles)
+            transitionH2.remove(fragmentDetalles).replace(R.id.all_container, fragmentDetalles)
             transitionH2.addToBackStack(null)
             transitionH2.commit()
         } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            transitionH2.remove(fragmentDetalles).commit()
-            transitionV2.replace(R.id.land_container, fragmentDetalles)
+            transitionV2.remove(fragmentDetalles).replace(R.id.land_container, fragmentDetalles)
             transitionV2.addToBackStack(null)
             transitionV2.commit()
         }
