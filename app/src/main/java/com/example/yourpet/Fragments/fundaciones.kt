@@ -3,7 +3,6 @@ package com.example.yourpet.Fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yourpet.Fundacion
 import com.example.yourpet.R
-import com.example.yourpet.RecyclerFundacionAdapter
+import com.example.yourpet.Adapters.RecyclerFundacionAdapter
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.cardview_fundacion.view.*
 
@@ -33,7 +32,7 @@ class fundaciones : Fragment() {
     }
 
     lateinit var recyclerFundaciones: RecyclerView
-    val fundacionList: ArrayList<Fundacion> = ArrayList()
+    var fundacionList: ArrayList<Fundacion> = ArrayList()
     var itemclick: ItemFundacion? = null
 
     override fun onCreateView(
@@ -42,37 +41,38 @@ class fundaciones : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_fundaciones, container, false)
-
         recyclerFundaciones = view.findViewById(R.id.rv_fundaciones)
 
-        var adapterF = RecyclerFundacionAdapter(fundacionList, object : RecyclerFundacionAdapter.OnItemClickListener {
-            override fun onItemClickListener(view: View) {
-                itemclick?.nombreItem(view.tv_nombre.text.toString())
+            var adapterF = RecyclerFundacionAdapter(
+                fundacionList,
+                object : RecyclerFundacionAdapter.OnItemClickListener {
+                    override fun onItemClickListener(view: View) {
+                        itemclick?.nombreItem(view.tv_nombre.text.toString())
+                    }
+
+                })
+            recyclerFundaciones.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = adapterF
+                setHasFixedSize(true)
             }
 
-        })
-        recyclerFundaciones.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = adapterF
-            setHasFixedSize(true)
-        }
-
-        var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        var myRef: DatabaseReference = database.getReference("fundaciones")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-                fundacionList.removeAll(fundacionList)
-                for (snapshot: DataSnapshot in p0.children) {
-                    var fundacion1: Fundacion = snapshot.getValue(Fundacion::class.java)!!
-                    fundacionList.add(fundacion1)
+            var database: FirebaseDatabase = FirebaseDatabase.getInstance()
+            var myRef: DatabaseReference = database.getReference("fundaciones")
+            myRef.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
                 }
-                adapterF.notifyDataSetChanged()
-            }
 
-        })
+                override fun onDataChange(p0: DataSnapshot) {
+                    fundacionList.removeAll(fundacionList)
+                    for (snapshot: DataSnapshot in p0.children) {
+                        var fundacion1: Fundacion = snapshot.getValue(Fundacion::class.java)!!
+                        fundacionList.add(fundacion1)
+                    }
+                    adapterF.notifyDataSetChanged()
+                }
+
+            })
 
         return view
     }
@@ -81,5 +81,6 @@ class fundaciones : Fragment() {
         itemclick = context as ItemFundacion
         super.onAttach(context)
     }
+
 
 }

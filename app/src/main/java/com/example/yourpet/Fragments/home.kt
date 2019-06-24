@@ -38,6 +38,7 @@ class home: Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         var view = inflater.inflate(R.layout.fragment_home, container, false)
+
         // Inflate the layout for this fragment
         btn1 = view.findViewById(R.id.btn_fundaciones)
         btn2 = view.findViewById(R.id.btn_adopciones)

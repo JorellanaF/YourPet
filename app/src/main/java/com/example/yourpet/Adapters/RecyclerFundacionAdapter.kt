@@ -1,33 +1,17 @@
-package com.example.yourpet
+package com.example.yourpet.Adapters
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.yourpet.Fragments.details_fundacion
-import com.example.yourpet.Fragments.fundaciones
-import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_detalles_fundacion.*
-import kotlinx.android.synthetic.main.cardview_fundacion.*
 import kotlinx.android.synthetic.main.cardview_fundacion.view.*
-import kotlinx.android.synthetic.main.fragment_details_fundacion.view.*
-import android.widget.AdapterView.OnItemClickListener
+import com.example.yourpet.Fundacion
+import com.example.yourpet.R
 
 
-
-
-class RecyclerFundacionAdapter(var fundaciones: List<Fundacion>, listener:OnItemClickListener):
+class RecyclerFundacionAdapter(var fundaciones: List<Fundacion>, listener: OnItemClickListener):
     RecyclerView.Adapter<RecyclerFundacionAdapter.ViewHolder>() {
 
     init{
@@ -51,7 +35,7 @@ class RecyclerFundacionAdapter(var fundaciones: List<Fundacion>, listener:OnItem
     }
 
     companion object {
-        private var listener1:OnItemClickListener? = null
+        private var listener1: OnItemClickListener? = null
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
@@ -66,14 +50,6 @@ class RecyclerFundacionAdapter(var fundaciones: List<Fundacion>, listener:OnItem
         fun setOnClickListener() {
             itemView.setOnClickListener(this)
         }
-
-            /*var intent = Intent(context, detallesFundacion::class.java)
-            intent.putExtra("nombre", v.tv_nombre.text.toString())
-            Log.d("recibido", intent.putExtra("imagen", v.tv_nombre.text.toString()).toString())
-            context.startActivity(intent)*/
-
-            //Log.d("presionado", "HAYYY " + v.tv_nombre.text)
-
 
         fun bind(item: Fundacion) = with(itemView) {
 
