@@ -48,7 +48,7 @@
                     app:layout_constraintBottom_toBottomOf="parent">
 
                 <FrameLayout
-                        android:id="@+id/land_container"
+                        android:id="@+id/det_container"
                         android:layout_width="350dp"
                         android:layout_height="match_parent" app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="8dp" android:layout_marginRight="8dp"

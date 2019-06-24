@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,15 +24,35 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         var transactionH: FragmentTransaction = supportFragmentManager.beginTransaction()
         var transactionV: FragmentTransaction = supportFragmentManager.beginTransaction()
+        var fragmentManager: FragmentManager = supportFragmentManager
+        var fragmentActualA: Fragment? = fragmentManager.findFragmentById(R.id.all_container)
+        var fragmentActualC: Fragment? = fragmentManager.findFragmentById(R.id.container)
+        var fragmentActualD: Fragment? = fragmentManager.findFragmentById(R.id.det_container)
         when (item.itemId) {
             R.id.navigation_home -> {
                 if(resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
-                    transactionH.replace(R.id.all_container, fragmentHome)
-                    transactionH.addToBackStack(null).commit()
+                    if (fragmentActualA != null) {
+                        transactionV.remove(fragmentActualA).replace(R.id.all_container, fragmentHome)
+                    }
+                    if (fragmentActualC != null) {
+                        transactionV.remove(fragmentActualC)
+                    }
+                    if (fragmentActualD != null) {
+                        transactionV.remove(fragmentActualD)
+                    }
+                    transactionV.addToBackStack(null).commit()
                 }
                 else if(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE){
-                    transactionV.replace(R.id.all_container, fragmentHome)
-                    transactionV.addToBackStack(null).commit()
+                    if (fragmentActualA != null) {
+                        transactionH.remove(fragmentActualA).replace(R.id.all_container, fragmentHome)
+                    }
+                    if (fragmentActualC != null) {
+                        transactionH.remove(fragmentActualC)
+                    }
+                    if (fragmentActualD != null) {
+                        transactionH.remove(fragmentActualD)
+                    }
+                    transactionH.addToBackStack(null).commit()
                 }
                 return@OnNavigationItemSelectedListener true
             }
@@ -97,7 +118,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
             transitionH2.addToBackStack(null)
             transitionH2.commit()
         } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            transitionV2.remove(fragmentDetalles).replace(R.id.land_container, fragmentDetalles)
+            transitionV2.remove(fragmentDetalles).replace(R.id.det_container, fragmentDetalles)
             transitionV2.addToBackStack(null)
             transitionV2.commit()
         }
