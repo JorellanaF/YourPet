@@ -23,6 +23,7 @@ class AdopActivity : AppCompatActivity(), Adopciones.Other {
         when(op){
             2 ->{
                 changeFragment(R.id.adop_activity,darAdopFragment)
+                supportFragmentManager.beginTransaction().addToBackStack(null).commit()
             }
         }
 
