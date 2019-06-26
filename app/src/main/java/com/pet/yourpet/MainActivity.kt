@@ -1,5 +1,6 @@
 package com.pet.yourpet
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import com.pet.yourpet.Fragments.details_fundacion
 import com.pet.yourpet.Fragments.fundaciones
 import com.pet.yourpet.Fragments.home
 import com.pet.yourpet.Fragments.home.Cambio
+import com.pet.yourpet.activities.AdopActivity
 
 class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
 
@@ -116,6 +118,9 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
                 }
             }
             transaction1.addToBackStack(null).commit()
+        }
+        if (numero == 2){
+            startActivity(Intent(this,AdopActivity::class.java))
         }
     }
 

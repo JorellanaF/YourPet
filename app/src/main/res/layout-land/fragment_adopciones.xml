@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        tools:context="com.pet.yourpet.Fragments.Adopciones">
+
+    <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:textSize="40dp"
+                android:text="Adopciones"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            <Button
+                    android:id="@+id/btn_land_adoptar"
+                    android:layout_width="@dimen/size_btn"
+                    android:layout_height="@dimen/size_btn"
+                    android:layout_marginTop="@dimen/margin_btn_land"
+                    android:layout_marginRight="@dimen/margin_btn_land"
+                    android:layout_marginLeft="@dimen/margin_btn_land"
+                    android:text="adoptar"/>
+
+            <Button
+                    android:id="@+id/btn_land_dar_adopcion"
+                    android:layout_width="@dimen/size_btn"
+                    android:layout_height="@dimen/size_btn"
+                    android:layout_marginTop="@dimen/margin_btn_land"
+                    android:layout_marginLeft="@dimen/margin_btn_land"
+                    android:layout_marginRight="@dimen/margin_btn_land"
+                    android:text="dar en adopcion"/>
+
+            <Button
+                    android:id="@+id/btn_land_mis_adopciones"
+                    android:layout_width="@dimen/size_btn"
+                    android:layout_height="@dimen/size_btn"
+                    android:layout_marginTop="@dimen/margin_btn_land"
+                    android:layout_marginLeft="@dimen/margin_btn_land"
+                    android:text="mi adopcion"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
