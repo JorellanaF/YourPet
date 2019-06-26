@@ -1,20 +1,12 @@
-package com.example.yourpet
+package com.pet.yourpet
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_detalles_fundacion.*
-import kotlinx.android.synthetic.main.fragment_details_fundacion.*
-import kotlinx.android.synthetic.main.fragment_details_fundacion.tv_detail_contacto
-import kotlinx.android.synthetic.main.fragment_details_fundacion.tv_detail_descripcion
-import kotlinx.android.synthetic.main.fragment_details_fundacion.tv_detail_nombre
 
 class detallesFundacion : AppCompatActivity() {
 

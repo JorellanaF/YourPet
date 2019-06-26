@@ -1,19 +1,16 @@
-package com.example.yourpet.Fragments
+package com.pet.yourpet.Fragments
 
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.example.yourpet.R
+import com.pet.yourpet.R
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_detalles_fundacion.*
-import kotlinx.android.synthetic.main.cardview_fundacion.*
 import kotlinx.android.synthetic.main.fragment_details_fundacion.*
 
 
@@ -93,6 +90,10 @@ class details_fundacion : Fragment(){
         textContacto = view.findViewById(R.id.tv_detail_contacto)
 
         return view
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
     }
 
     fun prueba(nombre: String){

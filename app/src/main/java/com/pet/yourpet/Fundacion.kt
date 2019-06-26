@@ -1,7 +1,4 @@
-package com.example.yourpet
-
-import android.os.Parcel
-import android.os.Parcelable
+package com.pet.yourpet
 
 class Fundacion{
     var imagen: String = ""

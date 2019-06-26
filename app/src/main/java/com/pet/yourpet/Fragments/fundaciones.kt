@@ -1,4 +1,4 @@
-package com.example.yourpet.Fragments
+package com.pet.yourpet.Fragments
 
 
 import android.content.Context
@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yourpet.Fundacion
-import com.example.yourpet.R
-import com.example.yourpet.Adapters.RecyclerFundacionAdapter
+import com.pet.yourpet.Fundacion
+import com.pet.yourpet.R
+import com.pet.yourpet.Adapters.RecyclerFundacionAdapter
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.cardview_fundacion.view.*
 
@@ -81,6 +81,5 @@ class fundaciones : Fragment() {
         itemclick = context as ItemFundacion
         super.onAttach(context)
     }
-
 
 }

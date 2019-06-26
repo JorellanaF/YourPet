@@ -1,4 +1,4 @@
-package com.example.yourpet.Adapters
+package com.pet.yourpet.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.cardview_fundacion.view.*
-import com.example.yourpet.Fundacion
-import com.example.yourpet.R
+import com.pet.yourpet.Fundacion
+import com.pet.yourpet.R
 
 
 class RecyclerFundacionAdapter(var fundaciones: List<Fundacion>, listener: OnItemClickListener):
