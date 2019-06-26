@@ -11,10 +11,12 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name="com.pet.yourpet.detallesFundacion">
+        <activity android:name=".activities.AdopActivity">
+        </activity>
+        <activity android:name=".detallesFundacion">
         </activity>
         <activity
-                android:name="com.pet.yourpet.MainActivity"
+                android:name=".MainActivity"
                 android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
