@@ -71,11 +71,11 @@ class details_consejos : Fragment() {
                     .load(p0.child("imagen").getValue().toString())
                     .placeholder(R.drawable.ic_launcher_background)
                     .into(iv_detailsC_logo)
-                var nombre: String = p0.child("nombre_fundacion").getValue().toString()
+                var nombre: String = p0.child("titulo").getValue().toString()
                 context.apply {
                     tv_detailsC_titulo?.text = nombre
                 }
-                var descripcion: String = p0.child("descripcion").getValue().toString()
+                var descripcion: String = p0.child("contenido").getValue().toString()
                 tv_detailsC_contenido?.text = descripcion
             }
 
