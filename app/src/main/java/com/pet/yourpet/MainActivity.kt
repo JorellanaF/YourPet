@@ -1,14 +1,20 @@
 package com.pet.yourpet
 
+import android.app.DownloadManager
 import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment.DIRECTORY_DOWNLOADS
 import android.view.View
+import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.pet.yourpet.Fragments.details_fundacion
 import com.pet.yourpet.Fragments.fundaciones
 import com.pet.yourpet.Fragments.home
@@ -161,9 +167,47 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         }
     }
 
+    lateinit var firebaseStorage: FirebaseStorage
+    lateinit var storageReference: StorageReference
+
+    lateinit var botonLeyes: Button
+
+    lateinit var ref: StorageReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        botonLeyes = findViewById(R.id.btn_leyes)
+
+        botonLeyes.setOnClickListener {
+            download()
+        }
+
+        fun download(){
+
+            storageReference = firebaseStorage.getReference()
+            ref = storageReference.child("Leyes-Contra-Maltrato-Animal-SV.pdf")
+
+            ref.downloadUrl.addOnSuccessListener {
+
+                var url = Uri.parse(toString())
+                downloadFiles(this, "Leyes-Contra-Maltrato-Animal_sv", ".pdf", DIRECTORY_DOWNLOADS,url.toString())
+
+            }.addOnFailureListener {
+
+            }
+
+        }
+
+        fun downloadFiles(context: MainActivity, fileName:String, fileExtenion:String, destinationDirectory:String, url:String){
+            val downloadManager = context as DownloadManager
+            val uri = Uri.parse(url)
+            val request = DownloadManager.Request(uri)
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            request.setDestinationInExternalFilesDir(this, destinationDirectory, fileName+fileExtenion)
+        }
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         /*if (savedInstanceState != null) {
             fragmentHome = supportFragmentManager.getFragment(savedInstanceState, "home")!!
