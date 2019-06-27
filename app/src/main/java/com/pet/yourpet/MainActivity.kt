@@ -1,38 +1,24 @@
 package com.pet.yourpet
 
-import android.app.DownloadManager
 import android.content.Intent
 import android.content.res.Configuration
-import android.net.Uri
 import android.os.Bundle
-<<<<<<< HEAD
-import android.util.Log
-import android.view.View
-import android.widget.FrameLayout
-=======
-import android.os.Environment.DIRECTORY_DOWNLOADS
-import android.view.View
-import android.widget.Button
->>>>>>> b721cf30afb7a62d5519886b1c1d594c93d695cb
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import com.pet.yourpet.Fragments.details_fundacion
-import com.pet.yourpet.Fragments.fundaciones
-import com.pet.yourpet.Fragments.home
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.pet.yourpet.Fragments.*
 import com.pet.yourpet.Fragments.home.Cambio
 import com.pet.yourpet.activities.AdopActivity
 
-class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
+class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, consejos.ItemConsejo {
 
     var fragmentHome: Fragment = home()
     var fragmentFundacion: Fragment = fundaciones()
     var fragmentDetalles: Fragment = details_fundacion()
+    var fragmentConsejos: Fragment = consejos()
+    var fragmentDetallesC: Fragment = details_consejos()
 
     //Se cambia el fragmento segun el nav
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -117,6 +103,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
     //Envio el numero de que boton se presiono
     override fun enviar(numero: Int) {
         var transaction1: FragmentTransaction = supportFragmentManager.beginTransaction()
+        var transaction4: FragmentTransaction = supportFragmentManager.beginTransaction()
         var fragmentManager: FragmentManager = supportFragmentManager
         var fragmentActualA: Fragment? = fragmentManager.findFragmentById(R.id.container)
         if (numero == 1) {
@@ -134,6 +121,58 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         if (numero == 2) {
             startActivity(Intent(this, AdopActivity::class.java))
         }
+        if (numero == 4){
+            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+                if (fragmentActualA != null) {
+                    transaction4.remove(fragmentActualA).replace(R.id.container, fragmentConsejos)
+                }
+            } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                if (fragmentActualA != null) {
+                    transaction4.remove(fragmentActualA).replace(R.id.container, fragmentConsejos)
+                }
+            }
+            transaction4.addToBackStack(null).commit()
+        }
+    }
+
+    override fun consejoItem(consejo: String) {
+        var arg = Bundle()
+        arg.putString("nombreC", consejo)
+        fragmentDetallesC.setArguments(arg)
+
+        var fragM: FragmentManager = supportFragmentManager
+        var fragA: Fragment? = fragM.findFragmentById(R.id.container)
+        var fragB: Fragment? = fragM.findFragmentById(R.id.det_container)
+        var transitionH2: FragmentTransaction = supportFragmentManager.beginTransaction()
+        var transitionV2: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            if (fragA != null) {
+                transitionV2.replace(R.id.det_container, fragmentDetallesC)
+            }
+            if (fragB != null) {
+                transitionV2.remove(fragmentDetallesC).replace(R.id.det_container, fragmentDetallesC)
+            } else {
+                transitionV2.replace(R.id.det_container, fragmentDetallesC)
+            }
+        }
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (fragA != null) {
+                if (fragA == fragmentDetallesC) {
+                    transitionV2.replace(R.id.det_container, fragmentDetallesC)
+                }
+            }
+            if (fragB != null) {
+                transitionV2.remove(fragB).replace(R.id.det_container, fragmentDetallesC)
+            } else {
+                transitionV2.replace(R.id.det_container, fragmentDetallesC)
+            }
+        }
+        transitionV2.addToBackStack(null)
+        transitionV2.commit()
+        transitionH2.addToBackStack(null)
+        transitionH2.commit()
+
     }
 
     //Envio el nombre de la fundacion que se mostrara para los detalles
@@ -178,24 +217,24 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
 
     }
 
-    lateinit var firebaseStorage: FirebaseStorage
+    /*lateinit var firebaseStorage: FirebaseStorage
     lateinit var storageReference: StorageReference
 
     lateinit var botonLeyes: Button
 
-    lateinit var ref: StorageReference
+    lateinit var ref: StorageReference*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        botonLeyes = findViewById(R.id.btn_leyes)
+        /*botonLeyes = findViewById(R.id.btn_leyes)
 
         botonLeyes.setOnClickListener {
-            download()
+            //download()
         }
 
-        fun download(){
+        fun download() {
 
             storageReference = firebaseStorage.getReference()
             ref = storageReference.child("Leyes-Contra-Maltrato-Animal-SV.pdf")
@@ -203,7 +242,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
             ref.downloadUrl.addOnSuccessListener {
 
                 var url = Uri.parse(toString())
-                downloadFiles(this, "Leyes-Contra-Maltrato-Animal_sv", ".pdf", DIRECTORY_DOWNLOADS,url.toString())
+                //downloadFiles(this, "Leyes-Contra-Maltrato-Animal_sv", ".pdf", DIRECTORY_DOWNLOADS, url.toString())
 
             }.addOnFailureListener {
 
@@ -211,13 +250,19 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
 
         }
 
-        fun downloadFiles(context: MainActivity, fileName:String, fileExtenion:String, destinationDirectory:String, url:String){
+        fun downloadFiles(
+            context: MainActivity,
+            fileName: String,
+            fileExtenion: String,
+            destinationDirectory: String,
+            url: String
+        ) {
             val downloadManager = context as DownloadManager
             val uri = Uri.parse(url)
             val request = DownloadManager.Request(uri)
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            request.setDestinationInExternalFilesDir(this, destinationDirectory, fileName+fileExtenion)
-        }
+            request.setDestinationInExternalFilesDir(this, destinationDirectory, fileName + fileExtenion)
+        }*/
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 

@@ -9,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pet.yourpet.Fundacion
-import com.pet.yourpet.R
-import com.pet.yourpet.Adapters.RecyclerFundacionAdapter
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.cardview_fundacion.view.*
+import com.pet.yourpet.Adapters.RecyclerConsejosAdapter
+import com.pet.yourpet.Consejo
+import com.pet.yourpet.R
+import kotlinx.android.synthetic.main.cardview_consejos.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,49 +25,50 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class fundaciones : Fragment() {
+class consejos : Fragment() {
 
-    interface ItemFundacion {
-        fun nombreItem(nombre: String)
+    interface ItemConsejo {
+        fun consejoItem(consejo: String)
     }
 
-    lateinit var recyclerFundaciones: RecyclerView
-    var fundacionList: ArrayList<Fundacion> = ArrayList()
-    var itemclick: ItemFundacion? = null
+    lateinit var recyclerConsejos: RecyclerView
+    var consejosList: ArrayList<Consejo> = ArrayList()
+    var itemclick: ItemConsejo? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_fundaciones, container, false)
-        recyclerFundaciones = view.findViewById(R.id.rv_fundaciones)
+        var view = inflater.inflate(R.layout.fragment_consejos, container, false)
 
-        var adapterF = RecyclerFundacionAdapter(
-            fundacionList,
-            object : RecyclerFundacionAdapter.OnItemClickListener {
+        recyclerConsejos = view.findViewById(R.id.rv_consejos)
+
+        var adapterF = RecyclerConsejosAdapter(
+            consejosList,
+            object : RecyclerConsejosAdapter.OnItemClickListener {
                 override fun onItemClickListener(view: View) {
-                    itemclick?.nombreItem(view.tv_nombre.text.toString())
+                    itemclick?.consejoItem(view.tv_titulo.text.toString())
                 }
 
             })
-        recyclerFundaciones.apply {
+        recyclerConsejos.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = adapterF
             setHasFixedSize(true)
         }
 
         var database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        var myRef: DatabaseReference = database.getReference("fundaciones")
+        var myRef: DatabaseReference = database.getReference("consejos")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                fundacionList.removeAll(fundacionList)
+                consejosList.removeAll(consejosList)
                 for (snapshot: DataSnapshot in p0.children) {
-                    var fundacion1: Fundacion = snapshot.getValue(Fundacion::class.java)!!
-                    fundacionList.add(fundacion1)
+                    var consejo1: Consejo = snapshot.getValue(Consejo::class.java)!!
+                    consejosList.add(consejo1)
                 }
                 adapterF.notifyDataSetChanged()
             }
@@ -78,7 +79,7 @@ class fundaciones : Fragment() {
     }
 
     override fun onAttach(context: Context) {
-        itemclick = context as ItemFundacion
+        itemclick = context as ItemConsejo
         super.onAttach(context)
     }
 
