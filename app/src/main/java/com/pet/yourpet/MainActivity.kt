@@ -3,9 +3,12 @@ package com.pet.yourpet
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.FrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -99,7 +102,6 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
             transactionV.commit()
             transactionH.commit()
         }
-
     }
 
     //Envio el numero de que boton se presiono
@@ -119,66 +121,62 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
             }
             transaction1.addToBackStack(null).commit()
         }
-        if (numero == 2){
-            startActivity(Intent(this,AdopActivity::class.java))
+        if (numero == 2) {
+            startActivity(Intent(this, AdopActivity::class.java))
         }
     }
 
     //Envio el nombre de la fundacion que se mostrara para los detalles
     override fun nombreItem(nombre: String) {
+
+        var arg = Bundle()
+        arg.putString("nombre", nombre)
+        fragmentDetalles.setArguments(arg)
+
         var fragM: FragmentManager = supportFragmentManager
         var fragA: Fragment? = fragM.findFragmentById(R.id.container)
         var fragB: Fragment? = fragM.findFragmentById(R.id.det_container)
         var transitionH2: FragmentTransaction = supportFragmentManager.beginTransaction()
         var transitionV2: FragmentTransaction = supportFragmentManager.beginTransaction()
-        var arg = Bundle()
-        arg.putString("nombre", nombre)
-        fragmentDetalles.setArguments(arg)
+
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            if(fragA != null){
-                transitionV2.remove(fragmentDetalles).replace(R.id.container, fragmentDetalles)
+            if (fragA != null) {
+                transitionV2.replace(R.id.det_container, fragmentDetalles)
             }
-            if(fragB != null){
-                transitionV2.remove(fragmentDetalles)
+            if (fragB != null) {
+                transitionV2.remove(fragmentDetalles).replace(R.id.det_container, fragmentDetalles)
+            } else {
+                transitionV2.replace(R.id.det_container, fragmentDetalles)
             }
-            else{
-                transitionV2.replace(R.id.container, fragmentDetalles)
-            }
-            transitionV2.addToBackStack(null)
-            transitionV2.commit()
-        } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            if(fragA != null){
-                transitionH2.remove(fragmentDetalles)
-            }
-            if(fragB != null){
-                transitionH2.remove(fragmentDetalles).replace(R.id.det_container, fragmentDetalles)
-            }
-            else{
-                transitionH2.replace(R.id.det_container, fragmentDetalles)
-            }
-            transitionH2.addToBackStack(null)
-            transitionH2.commit()
         }
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (fragA != null) {
+                if (fragA == fragmentDetalles) {
+                    transitionV2.replace(R.id.det_container, fragmentDetalles)
+                }
+            }
+            if (fragB != null) {
+                transitionV2.remove(fragB).replace(R.id.det_container, fragmentDetalles)
+            } else {
+                transitionV2.replace(R.id.det_container, fragmentDetalles)
+            }
+        }
+        transitionV2.addToBackStack(null)
+        transitionV2.commit()
+        transitionH2.addToBackStack(null)
+        transitionH2.commit()
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        /*if (savedInstanceState != null) {
-            fragmentHome = supportFragmentManager.getFragment(savedInstanceState, "home")!!
-           // fragmentFundacion = supportFragmentManager.getFragment(savedInstanceState, "Nombre")!!
-        }*/
 
         transicion(savedInstanceState)
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        // supportFragmentManager.putFragment(outState, "home", fragmentHome)
-        //supportFragmentManager.putFragment(outState,"Nombre", fragmentFundacion)
-    }
 
 }
