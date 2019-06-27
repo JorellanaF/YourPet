@@ -195,29 +195,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
             download()
         }
 
-        fun download(){
 
-            storageReference = firebaseStorage.getReference()
-            ref = storageReference.child("Leyes-Contra-Maltrato-Animal-SV.pdf")
-
-            ref.downloadUrl.addOnSuccessListener {
-
-                var url = Uri.parse(toString())
-                downloadFiles(this, "Leyes-Contra-Maltrato-Animal_sv", ".pdf", DIRECTORY_DOWNLOADS,url.toString())
-
-            }.addOnFailureListener {
-
-            }
-
-        }
-
-        fun downloadFiles(context: MainActivity, fileName:String, fileExtenion:String, destinationDirectory:String, url:String){
-            val downloadManager = context as DownloadManager
-            val uri = Uri.parse(url)
-            val request = DownloadManager.Request(uri)
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            request.setDestinationInExternalFilesDir(this, destinationDirectory, fileName+fileExtenion)
-        }
 
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
@@ -226,5 +204,28 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion {
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
+    fun download(){
+
+        storageReference = firebaseStorage.getReference()
+        ref = storageReference.child("Leyes-Contra-Maltrato-Animal-SV.pdf")
+
+        ref.downloadUrl.addOnSuccessListener {
+
+            var url = Uri.parse(toString())
+            downloadFiles(this, "Leyes-Contra-Maltrato-Animal_sv", ".pdf", DIRECTORY_DOWNLOADS,url.toString())
+
+        }.addOnFailureListener {
+
+        }
+
+    }
+
+    fun downloadFiles(context: MainActivity, fileName:String, fileExtenion:String, destinationDirectory:String, url:String){
+        val downloadManager = context as DownloadManager
+        val uri = Uri.parse(url)
+        val request = DownloadManager.Request(uri)
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+        request.setDestinationInExternalFilesDir(this, destinationDirectory, fileName+fileExtenion)
+    }
 
 }
