@@ -17,6 +17,7 @@ import com.google.firebase.storage.StorageReference
 import com.mascota.yourpet.Fragments.*
 import com.mascota.yourpet.Fragments.home.Cambio
 import com.mascota.yourpet.activities.AdopActivity
+import com.mascota.yourpet.activities.leyes
 
 class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, consejos.ItemConsejo {
 
@@ -149,7 +150,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
             startActivity(Intent(this, AdopActivity::class.java))
         }
         if(numero == 3){
-           //download()
+           startActivity(Intent(this, leyes::class.java))
         }
         if (numero == 4) {
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
