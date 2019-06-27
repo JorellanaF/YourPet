@@ -20,7 +20,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp" app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="1.0"/>
+                app:layout_constraintVertical_bias="1.0" android:contentDescription="@string/default_web_client_id"/>
 
         <TextView
                 android:id="@+id/tv_titulo"
@@ -28,8 +28,8 @@
                 android:layout_height="95dp" app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                android:textSize="10sp"
-                android:text="Nombre"
+                android:textSize="12sp"
+                android:text="@string/String_nombre_C"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginRight="10dp" android:layout_marginEnd="10dp"

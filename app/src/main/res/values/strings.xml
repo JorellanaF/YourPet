@@ -6,4 +6,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="String_nombre_C">Nombre</string>
+    <string name="String_nombre_F">Nombre</string>
+    <string name="String_contenido_C">Contenido:</string>
+    <string name="String_descripcion_F">Descripcion:</string>
+    <string name="String_contacto_F">Contacto:</string>
+    <string name="String_btn_fundaciones">Fundaciones</string>
+    <string name="String_btn_adopciones">Adopciones</string>
+    <string name="String_btn_leyes">Leyes</string>
+    <string name="String_btn_consejos">Consejos</string>
+    <string name="tittle_foundations">Foundations</string>
+    <string name="tittle_pet">Pet</string>
 </resources>

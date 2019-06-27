@@ -15,7 +15,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.0" android:contentDescription="@string/default_web_client_id"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -32,32 +32,32 @@
                 android:id="@+id/tv_detail_nombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="35dp"></TextView>
+                android:textSize="35sp"></TextView>
 
         <TextView
                 android:id="@+id/tv_descripcion_d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descripcion:"
-                android:textSize="20dp"></TextView>
+                android:text="@string/String_descripcion_F"
+                android:textSize="20sp"></TextView>
 
         <TextView
                 android:id="@+id/tv_detail_descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"></TextView>
+                android:textSize="15sp"></TextView>
         <TextView
                 android:id="@+id/tv_contacto_d"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contacto:"
-                android:textSize="20dp"></TextView>
+                android:text="@string/String_contacto_F"
+                android:textSize="20sp"></TextView>
 
         <TextView
                 android:id="@+id/tv_detail_contacto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"></TextView>
+                android:textSize="15sp"></TextView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
