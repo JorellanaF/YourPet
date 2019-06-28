@@ -3,6 +3,7 @@
           package="com.mascota.yourpet">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
             android:allowBackup="true"
@@ -11,8 +12,19 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".SplashScreen"
                     android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+=======
+        <activity android:name=".activities.leyes">
+        </activity>
+        <activity android:name=".activities.AdopActivity">
+        </activity>
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait">
+>>>>>>> fe74f8f3f97502f17356e95fcd4af9316a9e006e
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
