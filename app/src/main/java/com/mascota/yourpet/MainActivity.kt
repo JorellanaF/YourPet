@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
             startActivity(Intent(this, AdopActivity::class.java))
         }
         if(numero == 3){
-           //download()
+           download()
         }
         if (numero == 4) {
             if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -247,12 +247,12 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
 
     }
 
-    /*lateinit var firebaseStorage: FirebaseStorage
+    lateinit var firebaseStorage: FirebaseStorage
     lateinit var storageReference: StorageReference
 
     lateinit var botonLeyes: Button
 
-    lateinit var ref: StorageReference*/
+    lateinit var ref: StorageReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -273,7 +273,7 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
-   /* fun download(){
+   fun download(){
 
         storageReference = firebaseStorage?.getReference()
         ref = storageReference.child("Leyes-Contra-Maltrato-Animal-SV.pdf")
@@ -295,6 +295,6 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
         val request = DownloadManager.Request(uri)
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         request.setDestinationInExternalFilesDir(this, destinationDirectory, fileName+fileExtenion)
-    }*/
+    }
 
 }
