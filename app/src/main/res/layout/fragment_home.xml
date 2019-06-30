@@ -69,8 +69,7 @@
                 android:id="@+id/btn_consejos"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:text="@string/String_btn_consejos"
-                android:background="#5871"
+                android:background="@drawable/ic_consejos"
                 android:layout_row="1"
                 android:layout_column="1"
                 android:gravity="center"/>
