@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import com.mascota.yourpet.R
 import com.mascota.yourpet.Fragments.home.Cambio as YourpetHomeCambio
 
@@ -22,7 +23,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class home: Fragment(){
-    lateinit var btn1: Button
+    lateinit var btn1: ImageView
     lateinit var btn2: Button
     lateinit var btn3: Button
     lateinit var btn4: Button
