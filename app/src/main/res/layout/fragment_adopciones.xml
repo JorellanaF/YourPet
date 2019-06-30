@@ -11,7 +11,7 @@
 
     <LinearLayout
             android:layout_width="250dp"
-            android:layout_height="400dp"
+            android:layout_height="450dp"
             android:orientation="vertical"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -19,13 +19,11 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+        <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:textSize="40dp"
-                android:text="Adopciones"/>
+                android:src="@drawable/ic_adopcion"/>
 
         <Button
                 android:id="@+id/btn_adoptar"

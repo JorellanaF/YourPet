@@ -6,20 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 
 import com.mascota.yourpet.R
-import com.mascota.yourpet.Fragments.Adopciones.Other as YourPetAdopOther
+import kotlinx.android.synthetic.main.fragment_adopciones.*
+
 
 
 class Adopciones : Fragment() {
 
-    lateinit var btn_adoptar: Button
-    lateinit var btn_dar_adop: Button
-    lateinit var btn_mi_adop: Button
-    lateinit var btn_land_adoptar: Button
-    lateinit var btn_land_dar_adop: Button
-    lateinit var btn_land_mi_adop: Button
     var opcion:Other? = null
 
     interface Other{
@@ -32,22 +26,16 @@ class Adopciones : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_adopciones, container, false)
 
-        btn_adoptar = view.findViewById(R.id.btn_adoptar)
-        btn_dar_adop = view.findViewById(R.id.btn_dar_adopcion)
-        btn_mi_adop = view.findViewById(R.id.btn_mis_adopciones)
-
-        btn_land_adoptar = view.findViewById(R.id.btn_land_adoptar)
-        btn_land_dar_adop = view.findViewById(R.id.btn_land_dar_adopcion)
-        btn_land_mi_adop = view.findViewById(R.id.btn_land_mis_adopciones)
-
-        btn_adoptar.setOnClickListener { item -> opcion?.change(1) }
-        btn_land_adoptar.setOnClickListener { item -> opcion?.change(1) }
-        btn_dar_adop.setOnClickListener { item -> opcion?.change(2) }
-        btn_land_dar_adop.setOnClickListener { item -> opcion?.change(2) }
-        btn_mi_adop.setOnClickListener { item -> opcion?.change(3) }
-        btn_land_mi_adop.setOnClickListener { item -> opcion?.change(3) }
-
         return view
+    }
+
+    override fun onStart() {
+
+        btn_adoptar.setOnClickListener{opcion?.change(1)}
+        btn_dar_adopcion.setOnClickListener{opcion?.change(2)}
+        btn_mis_adopciones.setOnClickListener{opcion?.change(3)}
+
+        super.onStart()
     }
 
     override fun onAttach(context: Context) {
