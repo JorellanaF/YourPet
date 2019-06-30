@@ -34,20 +34,26 @@
                 android:id="@+id/tv_detailsC_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="35sp"></TextView>
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#ffff"
+                android:justificationMode="inter_word"></TextView>
 
         <TextView
                 android:id="@+id/tv_descripcion_c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/String_contenido_C"
-                android:textSize="20sp"></TextView>
+                android:textSize="20sp"
+                android:textColor="#ffff"></TextView>
 
         <TextView
                 android:id="@+id/tv_detailsC_contenido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"></TextView>
+                android:textSize="15sp"
+                android:textColor="#ffff"
+                android:justificationMode="inter_word"></TextView>
 
     </LinearLayout>
 

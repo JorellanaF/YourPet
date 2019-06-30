@@ -24,9 +24,9 @@ private const val ARG_PARAM2 = "param2"
  */
 class home: Fragment(){
     lateinit var btn1: ImageView
-    lateinit var btn2: Button
-    lateinit var btn3: Button
-    lateinit var btn4: Button
+    lateinit var btn2: ImageView
+    lateinit var btn3: ImageView
+    lateinit var btn4: ImageView
     var cambio: Cambio? = null
 
     interface Cambio{

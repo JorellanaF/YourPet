@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.database.*
 import com.mascota.yourpet.Adapters.RecyclerConsejosAdapter
 import com.mascota.yourpet.Consejo
@@ -53,7 +54,7 @@ class consejos : Fragment() {
 
             })
         recyclerConsejos.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
             adapter = adapterF
             setHasFixedSize(true)
         }

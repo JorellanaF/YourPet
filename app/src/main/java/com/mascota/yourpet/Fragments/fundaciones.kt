@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mascota.yourpet.Fundacion
 import com.mascota.yourpet.R
 import com.mascota.yourpet.Adapters.RecyclerFundacionAdapter
@@ -52,7 +54,7 @@ class fundaciones : Fragment() {
 
             })
         recyclerFundaciones.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
             adapter = adapterF
             setHasFixedSize(true)
         }
