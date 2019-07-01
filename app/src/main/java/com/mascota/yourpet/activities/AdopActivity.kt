@@ -7,7 +7,7 @@ import com.mascota.yourpet.Fragments.Adopciones
 import com.mascota.yourpet.Fragments.DarAdopFragment
 import com.mascota.yourpet.R
 
-class AdopActivity : AppCompatActivity(), Adopciones.Other {
+class AdopActivity : AppCompatActivity(), Adopciones.Other, DarAdopFragment.Formulario {
 
     var adopFragment : Fragment = Adopciones()
     var darAdopFragment : Fragment = DarAdopFragment()
@@ -23,10 +23,16 @@ class AdopActivity : AppCompatActivity(), Adopciones.Other {
         when(op){
             2 ->{
                 changeFragment(R.id.adop_activity,darAdopFragment)
-                supportFragmentManager.beginTransaction().addToBackStack(null).commit()
             }
         }
+    }
 
+    override fun sendInfo(op: Int) {
+        when(op){
+            2->{
+                changeFragment(R.id.adop_activity,adopFragment)
+            }
+        }
     }
 
     private fun changeFragment(id: Int, frag: Fragment){

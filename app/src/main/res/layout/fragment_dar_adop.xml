@@ -24,38 +24,49 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="35dp"
-                android:text="Dar en adopción"/>
+                android:text="Dar en adopción"
+                android:textColor="@color/text_bl"/>
 
         <EditText
                 android:id="@+id/name_pet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_btn_land"
+                android:textColor="@color/text_bl"
+                android:textColorHint="@color/text_bl"
                 android:hint="Nombre de la mascota"/>
         <EditText
                 android:id="@+id/ega_pet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_btn_land"
+                android:textColor="@color/text_bl"
+                android:textColorHint="@color/text_bl"
                 android:hint="Edad de la mascota"/>
         <EditText
                 android:id="@+id/raza_pet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_btn_land"
+                android:textColor="@color/text_bl"
+                android:textColorHint="@color/text_bl"
                 android:hint="Raza"/>
-        <EditText
-                android:id="@+id/picture_pet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_btn_land"
-                android:hint="Foto de la mascota"/>
         <EditText
                 android:id="@+id/phone_pet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_btn_land"
+                android:textColor="@color/text_bl"
+                android:textColorHint="@color/text_bl"
                 android:hint="Teléfono"/>
+        <EditText
+                android:id="@+id/picture_pet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_btn_land"
+                android:textColor="@color/text_bl"
+                android:textColorHint="@color/text_bl"
+                android:hint="Foto de la mascota"/>
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
