@@ -1,7 +1,9 @@
 package com.mascota.yourpet.Fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,8 +29,10 @@ class DarAdopFragment : Fragment() {
 
     override fun onStart() {
 
-        btn_acep.setOnClickListener { opcion?.sendInfo(1) }
-        btn_cancel.setOnClickListener { opcion?.sendInfo(2) }
+        btn_upload_pic.setOnClickListener {opcion?.sendInfo(1)}
+        btn_acep.setOnClickListener { opcion?.sendInfo(2) }
+        btn_cancel.setOnClickListener { opcion?.sendInfo(3) }
+
 
         super.onStart()
     }
