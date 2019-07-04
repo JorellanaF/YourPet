@@ -66,7 +66,7 @@ class fundaciones : Fragment() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                fundacionList.removeAll(fundacionList)
+                //fundacionList.removeAll(fundacionList)
                 for (snapshot: DataSnapshot in p0.children) {
                     var fundacion1: Fundacion = snapshot.getValue(Fundacion::class.java)!!
                     fundacionList.add(fundacion1)

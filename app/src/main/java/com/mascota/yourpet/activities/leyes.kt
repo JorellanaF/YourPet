@@ -11,6 +11,6 @@ class leyes : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leyes)
 
-        pdf.fromAsset("Leyes-Contra-Maltrato-Animal_SV.pdf").load()
+        pdf.fromAsset("Leyes-Contra-Maltrato-Animal-SV.pdf").load()
     }
 }

@@ -6,18 +6,23 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment.DIRECTORY_DOWNLOADS
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.mascota.yourpet.Fragments.*
 import com.mascota.yourpet.Fragments.home.Cambio
 import com.mascota.yourpet.activities.AdopActivity
 import com.mascota.yourpet.activities.leyes
+import com.google.firebase.auth.FirebaseUser
+
+
 
 class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, consejos.ItemConsejo {
 
@@ -108,6 +113,9 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
                     transactionH.addToBackStack(null).commit()
                 }
                 return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_account -> {
+
             }
         }
         false
@@ -260,6 +268,8 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mAuth = FirebaseAuth.getInstance()
+
         /*botonLeyes = findViewById(R.id.btn_leyes)
 
         botonLeyes.setOnClickListener {
@@ -297,6 +307,24 @@ class MainActivity : AppCompatActivity(), Cambio, fundaciones.ItemFundacion, con
         val request = DownloadManager.Request(uri)
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         request.setDestinationInExternalFilesDir(this, destinationDirectory, fileName+fileExtenion)
+    }
+
+    lateinit var mAuth: FirebaseAuth
+
+    override fun onStart() {
+        super.onStart()
+
+        val currentUser = mAuth.currentUser
+        if(currentUser != null){
+
+        }
+        else if(mAuth != null){
+            var nav: BottomNavigationView = findViewById(R.id.nav_view)
+            nav.setVisibility(View.INVISIBLE)
+            supportActionBar?.hide()
+            var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container, login()).commit()
+        }
     }
 
 }
