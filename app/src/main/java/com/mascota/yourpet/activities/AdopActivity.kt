@@ -18,6 +18,7 @@ class AdopActivity : AppCompatActivity(), Adopciones.Other, DarAdopFragment.Form
     var adopFragment : Fragment = Adopciones()
     var darAdopFragment : Fragment = DarAdopFragment()
     val REQUEST_IMAGE_CAPTURE:Int = 1
+    var img:Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +42,6 @@ class AdopActivity : AppCompatActivity(), Adopciones.Other, DarAdopFragment.Form
                 picture.setType("image/*").setAction(Intent.ACTION_GET_CONTENT)
                 startActivityForResult(Intent.createChooser(picture, "Seleccione una imagen"),REQUEST_IMAGE_CAPTURE)
             }
-            2->{
-
-            }
             3->{
                 changeFragment(R.id.adop_activity,adopFragment)
             }
@@ -52,7 +50,6 @@ class AdopActivity : AppCompatActivity(), Adopciones.Other, DarAdopFragment.Form
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var img:Uri? = null
 
         when(requestCode){
             REQUEST_IMAGE_CAPTURE->{
