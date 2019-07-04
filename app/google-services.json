@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "827393201357-d0h31nkfn644vgkbd2n4vc9v1voo3fr0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mascota.yourpet",
+            "certificate_hash": "0060395d76577ab40abd1628dd1d93015805db62"
+          }
+        },
+        {
+          "client_id": "827393201357-1lhgq9229849umcbcvo2efk1bt3cdv7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mascota.yourpet",
+            "certificate_hash": "9ce5237e63b45550aeb37031cc24ed18eca0ba8e"
+          }
+        },
+        {
           "client_id": "827393201357-8drgllo6tnekbvr76pk5vvsdkb790iv0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

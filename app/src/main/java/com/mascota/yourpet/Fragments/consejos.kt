@@ -66,7 +66,7 @@ class consejos : Fragment() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                consejosList.removeAll(consejosList)
+                //consejosList.removeAll(consejosList)
                 for (snapshot: DataSnapshot in p0.children) {
                     var consejo1: Consejo = snapshot.getValue(Consejo::class.java)!!
                     consejosList.add(consejo1)
